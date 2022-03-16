@@ -64,6 +64,7 @@ function downloadMqGateway {
 
 function prepareService {
   echo "[MqGateway Installer] Preparing systemd mqgateway.service..." |& tee -a "$LOGS_FILE"
+  echo 'export GATEWAY_SYSTEM_COMPONENTS_SERIAL_ENABLED="false"' > $MQGATEWAY_START_SCRIPT
   echo "cd /opt/mqgateway || exit" > $MQGATEWAY_START_SCRIPT
   echo "java -Xms$MQGATEWAY_HEAP_MEMORY -Xmx$MQGATEWAY_HEAP_MEMORY -jar mqgateway-$MQGATEWAY_VERSION-all.jar" >> $MQGATEWAY_START_SCRIPT
   chmod 744 $MQGATEWAY_START_SCRIPT
